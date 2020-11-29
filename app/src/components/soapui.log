@@ -1,0 +1,6 @@
+2020-11-29 02:50:20,976 WARN  [SoapUI] Could not find jfxrt.jar. Internal browser will be disabled.
+2020-11-29 02:50:20,977 WARN  [SoapUI] Missing folder [/home/kiquetal/ext] for external libraries
+2020-11-29 02:50:21,300 INFO  [DefaultSoapUICore] initialized soapui-settings from [/home/kiquetal/soapui-settings.xml]
+2020-11-29 02:50:22,211 INFO  [WorkspaceImpl] Loading workspace from [/home/kiquetal/intellij-soapui-workspace.xml]
+2020-11-29 02:51:57,265 INFO  [WorkspaceImpl] Saved workspace to [/home/kiquetal/intellij-soapui-workspace.xml]
+2020-11-29 02:51:57,276 INFO  [DefaultSoapUICore] Settings saved to [/home/kiquetal/soapui-settings.xml]

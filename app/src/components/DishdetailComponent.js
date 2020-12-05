@@ -1,8 +1,7 @@
-import React, {Component} from 'react';
-import {Media} from 'reactstrap';
+import React from 'react';
 
 import {
-  Card, CardImg, CardImgOverlay, CardText, CardBody,
+  Card, CardImg,  CardText, CardBody,
   CardTitle
 } from 'reactstrap';
 
@@ -40,13 +39,13 @@ function  DishDetail(props){
       );
     else
       return (
-        <div></div>
+        <div/>
       );
   }
   
   function RenderComments({comments}) {
     if (comments != null) {
-      var comments = comments.map((comment) => {
+      var commentsItems = comments.map((comment) => {
          var options = { year: 'numeric', month: 'short' ,day:'numeric'};
 	var d=new Date(comment.date);
         return (<li key={comment.id.toString()} className="m-1">
@@ -59,11 +58,11 @@ function  DishDetail(props){
       
       return (<div className="col-12 col-md-5 m-1">
         <h4>Comments</h4>
-        <ul className="list-unstyled">{comments}</ul>
+        <ul className="list-unstyled">{commentsItems}</ul>
       </div>);
     } else
       
-      return (<div></div>);
+      return (<div/>);
     
     
   }

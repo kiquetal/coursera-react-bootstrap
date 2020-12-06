@@ -5,10 +5,20 @@ import { Link } from 'react-router-dom';
 
 function  RenderLeader(props)
 {
-    
-    return(<Media>
-    
-    </Media>);
+    var name=props.leader.image;
+    return(<React.Fragment>
+          <Media >
+              <Media object src={name}  alt="Generic placeholder image" />
+          </Media>
+          <Media body className="ml-5">
+              <Media heading>
+                 <h4> {props.leader.name}</h4>
+                  <h5>{props.leader.designation}</h5>
+              </Media>
+              {props.leader.description}
+          </Media>
+    </React.Fragment>
+    );
 }
 
 
@@ -16,8 +26,10 @@ function About(props) {
 
     const leaders = props.leaders.map((leader) => {
         return (
-            <p>Leader {leader.name}</p>
-        );
+          <div className="row mt-5">
+            <RenderLeader key={leader.id} leader={leader}/>
+          </div>
+            );
     });
 
     

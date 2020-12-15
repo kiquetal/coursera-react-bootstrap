@@ -23,8 +23,8 @@ class CommentForm extends React.Component{
   
   handleSubmit = (values) => {
     alert(JSON.stringify(values));
-    console.log('Current State is: ' + JSON.stringify(values));
-    this.props.addComment(this.props.dishId,values.rating,values.name, values.comment);
+    console.log('Current State is: ' + JSON.stringify(values) + `Y MI ${this.props.dishId}`);
+    this.props.addComment(this.props.dishId,values.rating,values.name,  values.comment);
     this.toggleModal();
     
   }

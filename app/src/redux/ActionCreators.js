@@ -1,5 +1,6 @@
 import * as ActionTypes from './ActionTypes';
 import { baseUrl } from "../shared/baseUrl";
+import {ADD_LEADERS, LEADERS_FAILED, LEADERS_LOADING} from "./ActionTypes";
 
 export const addComment = ({dishId, rating, author ,comment,id,date})=>({
   type:ActionTypes.ADD_COMMENT,
@@ -115,3 +116,46 @@ export const addPromos = (promos) => ({
   type: ActionTypes.ADD_PROMOS,
   payload: promos
 });
+
+export const addLeaders=(leaders)=>({
+  type:ADD_LEADERS,
+  payload:leaders
+})
+
+export const leadersLoading = ()=>({
+  type:LEADERS_LOADING
+});
+
+export const leadersFailed = (errMessg)=>({
+  type:LEADERS_FAILED,
+  payload:errMessg
+})
+export const fetchLeaders=()=>dispatch=>{
+  
+  dispatch(dishesLoading());
+  
+  return fetch(baseUrl + 'leaders')
+  .then(response => response.json())
+  .then(leaders => dispatch(addLeaders(leaders)))
+  .catch((err)=>{
+    dispatch(leadersFailed(err.message))
+  });
+  
+  
+}
+export const postFeedback=(data)=>dispatch=>{
+  
+  return fetch(baseUrl+'feedback',{
+    method:'POST',
+    credentials: "same-origin",
+    headers:{
+      "Content-type":"application/json"
+    },
+    body:JSON.stringify(data)
+  }).then((res)=>res.json())
+    .then(res=> { return res})
+    .catch(err=>console.log("Could not send feedback"+err.message));
+  
+  
+  
+}

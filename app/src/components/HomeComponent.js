@@ -1,5 +1,6 @@
 import React from 'react';
 import { Loading } from './LoadingComponent';
+import { FadeTransform } from 'react-animation-components';
 
 import { Card, CardImg, CardText, CardBody,
   CardTitle, CardSubtitle} from 'reactstrap';
@@ -15,7 +16,7 @@ const Home = (props) => {
         <RenderCard item={props.promotion} isLoading={props.promoLoading} errMess={props.promoErrMess} />
       </div>
       <div className="col-12 col-md m-1">
-        <RenderCard item={props.leader}  />
+        <RenderCard item={props.leader}  isLoading={props.leaderLoading} errMess={props.leaderMess} />
       </div>
     </div>
   </div>);
@@ -40,7 +41,11 @@ function RenderCard({item, isLoading, errMess}) {
   }
   else if (item!=null)
     return(
-      
+      <FadeTransform
+        in
+        transformProps={{
+          exitTransform: 'scale(0.5) translateY(-50%)'
+        }}>
       <Card>
         <CardImg src={baseUrl + item.image} alt={item.name} />
         <CardBody>
@@ -49,6 +54,7 @@ function RenderCard({item, isLoading, errMess}) {
           <CardText>{item.description}</CardText>
         </CardBody>
       </Card>
+      </FadeTransform>
     );
   
   

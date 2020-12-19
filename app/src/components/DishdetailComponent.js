@@ -1,5 +1,5 @@
 import React from 'react';
-import {Breadcrumb, BreadcrumbItem, Button, Label, Modal, ModalBody, ModalHeader, Row} from 'reactstrap';
+import {Breadcrumb, BreadcrumbItem, Button,  Label, Modal, ModalBody, ModalHeader, Row} from 'reactstrap';
 import { Link } from 'react-router-dom';
 import {
   Card, CardImg,  CardText, CardBody,
@@ -9,6 +9,8 @@ import {Control, Errors, LocalForm} from "react-redux-form";
 import {Loading} from "./LoadingComponent";
 import {baseUrl} from "../shared/baseUrl";
 
+
+import { FadeTransform, Fade, Stagger } from 'react-animation-components';
 
 const required = (val) => val && val.length;
 const maxLength = (len) => (val) => !(val) || (val.length <= len);
@@ -188,13 +190,14 @@ function  DishDetail(props){
   
   function RenderComments({comments,postComment,dishId}) {
     if (comments != null) {
+      
       var commentsItems = comments.map((comment) => {
          var options = { year: 'numeric', month: 'short' ,day:'numeric'};
 	var d=new Date(comment.date);
-        return (<li key={comment.id.toString()} className="m-1">
+        return (<Fade in> <li key={comment.id.toString()} className="m-1">
           <div>{comment.comment}</div>
           <div className="mt-2">--{comment.author},{d.toLocaleDateString('en-US',options)}</div>
-        </li>);
+        </li></Fade>);
         
         
       });
@@ -202,7 +205,7 @@ function  DishDetail(props){
       return (<div className="col-12  m-1">
         <div className="row">
         <h4>Comments</h4>
-        <ul className="list-unstyled">{commentsItems}</ul>
+          <ul className="list-unstyled"><Stagger in>{commentsItems}</Stagger></ul>
       </div>
         <div className="row">
           <CommentForm postComment={postComment} dishId={dishId}/>

@@ -6,6 +6,8 @@ import {
   CardTitle
 } from 'reactstrap';
 import {Control, Errors, LocalForm} from "react-redux-form";
+import {Loading} from "./LoadingComponent";
+import {baseUrl} from "../shared/baseUrl";
 
 
 const required = (val) => val && val.length;
@@ -119,7 +121,27 @@ class CommentForm extends React.Component{
 
 function  DishDetail(props){
   
-  return (              <div className="container">
+  if (props.isLoading) {
+    return(
+      <div className="container">
+        <div className="row">
+          <Loading />
+        </div>
+      </div>
+    );
+  }
+  else if (props.errMess) {
+    return(
+      <div className="container">
+        <div className="row">
+          <h4>{props.errMess}</h4>
+        </div>
+      </div>
+    );
+  }
+  else if (props.dish != null)
+    
+    return (              <div className="container">
     <div className="row">
       <Breadcrumb>
       
@@ -150,7 +172,7 @@ function  DishDetail(props){
     if (dish != null)
       return (
         <Card>
-          <CardImg top src={dish.image} alt={dish.name}/>
+          <CardImg top src={baseUrl + dish.image} alt={dish.name} />
           <CardBody>
             <CardTitle>{dish.name}</CardTitle>
             <CardText>{dish.description}</CardText>

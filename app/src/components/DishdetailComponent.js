@@ -26,7 +26,8 @@ class CommentForm extends React.Component{
   handleSubmit = (values) => {
     alert(JSON.stringify(values));
     console.log('Current State is: ' + JSON.stringify(values) + `Y MI ${this.props.dishId}`);
-    this.props.addComment(this.props.dishId,values.rating,values.name,  values.comment);
+    this.props.postComment(this.props.dishId, values.rating, values.name, values.comment);
+
     this.toggleModal();
     
   }
@@ -158,7 +159,7 @@ function  DishDetail(props){
         <Dish dish={props.dish} />
       </div>
       <div className="col-12 col-md-5 m-1">
-        <RenderComments comments={props.comments} dishId={props.dish.id} addComment={props.addComment}/>
+        <RenderComments comments={props.comments} dishId={props.dish.id} postComment={props.postComment}/>
       </div>
     </div>
   </div>);
@@ -185,7 +186,7 @@ function  DishDetail(props){
       );
   }
   
-  function RenderComments({comments,addComment,dishId}) {
+  function RenderComments({comments,postComment,dishId}) {
     if (comments != null) {
       var commentsItems = comments.map((comment) => {
          var options = { year: 'numeric', month: 'short' ,day:'numeric'};
@@ -204,7 +205,7 @@ function  DishDetail(props){
         <ul className="list-unstyled">{commentsItems}</ul>
       </div>
         <div className="row">
-          <CommentForm addComment={addComment} dishId={dishId}/>
+          <CommentForm postComment={postComment} dishId={dishId}/>
         </div>
       </div>);
     } else
